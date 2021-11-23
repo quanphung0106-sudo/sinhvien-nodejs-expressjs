@@ -1,0 +1,26 @@
+{
+  "name": "f8-blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --inspect index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/quanphung0106-sudo/nodejs_blog.git"
+  },
+  "author": "quanphung",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/quanphung0106-sudo/nodejs_blog/issues"
+  },
+  "homepage": "https://github.com/quanphung0106-sudo/nodejs_blog#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13"
+  }
+}
