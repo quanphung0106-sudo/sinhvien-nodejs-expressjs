@@ -1,26 +1,25 @@
-const Course = require('../models/Course');
+const Lop = require('../models/Lop');
 const { multipleMongooseToObject } = require('../../util/mongoose');
 
-class CourseController {
-    //[GET] /me/storage/courses
-    storageMyCourses(req, res, next) {
-
-        Promise.all([ Course.find({}), Course.countDocumentsDeleted()])
-            .then(([courses, deletedCount]) => 
-                res.render('me/storage-courses', {
-                    courses: multipleMongooseToObject(courses),
-                    deletedCount,
-                })
-            )
-            .catch(next);
+class MeController {
+    //[GET] /me/storage/lops
+    storageMyLops(req, res, next) {
+        Promise.all([ Lop.find({}), Lop.countDocumentsDeleted()])
+        .then(([lops, deletedCount]) => 
+            res.render('me/storage-lops', {
+                lops: multipleMongooseToObject(lops),
+                deletedCount,
+            })
+        )
+        .catch(next);
     };
     
-    myTrashCourses(req, res, next) {
-        Course.findDeleted({})
-            .then(courses => res.render('me/trash-courses', {courses: multipleMongooseToObject(courses),}))
+    myTrashLops(req, res, next) {
+        Lop.findDeleted({})
+            .then(lops => res.render('me/trash-lops', {lops: multipleMongooseToObject(lops),}))
             .catch(next);
     };
     
 }
 
-module.exports = new CourseController();
+module.exports = new MeController();

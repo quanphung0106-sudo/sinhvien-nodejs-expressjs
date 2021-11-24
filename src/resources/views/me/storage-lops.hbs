@@ -1,0 +1,94 @@
+<div class="container">
+  <h2 class="mb-5">Quản lý danh sách lớp</h2>
+  <a class="trash-btn" href="/me/trash/lops"> 
+    <i class="ti-trash"></i>
+    <p class="trash" >Thùng rác: ({{deletedCount}})</p>
+  </a>
+  <a href="/lops/create" class="btn btn-success float-end">
+    <i class="ti-plus"></i>
+    Tạo mới
+  </a> 
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Mã Lớp</th>
+        <th scope="col">Tên lớp</th>
+        <th scope="col">Mã khoa</th>
+        <th scope="col">Thời gian tạo</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+        {{#each lops}}
+      <tr>
+        <th scope="row">{{sum @index 1}}</th>
+        <td>{{this._id}}</td>
+        <td>{{this.tenLop}}</td>
+        <td>{{this.maKhoa}}</td>
+        <td>{{this.createdAt}}</td>
+        <td>
+          <a href="/lops/{{this._id}}/edit" class="btn btn-warning">Sửa</a>
+          <a href="/lops/{{this._id}}" class="btn btn-danger" data-id="{{this._id}}" data-bs-toggle="modal" data-bs-target="#delete-lops-modal">Xóa</a>
+        </td>
+      </tr>
+        {{else}}
+        <tr>
+          <td colspan="5" class="text-center">
+            Bạn chưa đăng bất kỳ lớp nào.
+            <a href="/lops/create">Tạo thêm lớp</a>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</form>
+
+{{!-- Confirm delete --}}
+
+{{!-- Modal --}}
+<div class="modal fade" id="delete-lops-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">WARNING!!!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Bạn chắc chắn muốn xóa lớp này ?
+      </div>
+      <div class="modal-footer">
+        <button id="delete-lop" type="button" class="btn btn-danger">Xóa bỏ</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Không</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{!-- Hidden form --}}
+<form name="delete-lop-form" method="POST"></form>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+
+    var lopId;
+    var deleteForm = document.forms['delete-lop-form'];
+    var deleteLopModal = document.getElementById('delete-lops-modal');
+    var btnDeleteCourse = document.getElementById('delete-lop');
+
+    if (deleteLopModal) {
+      deleteLopModal.addEventListener('show.bs.modal',function (event) {
+      var button = event.relatedTarget;
+
+      lopId = button.getAttribute('data-id');
+      
+    })};
+
+    btnDeleteCourse.onclick = function () {
+      deleteForm.action = `/lops/${lopId}?_method=DELETE`;
+      deleteForm.submit();
+    };
+
+});
+</script> 
