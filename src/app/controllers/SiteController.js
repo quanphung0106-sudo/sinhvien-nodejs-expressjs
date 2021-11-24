@@ -1,5 +1,5 @@
 const Lop = require('../models/Lop');
-const { multipleMongooseToObject, mongooseToObject } = require('../../util/mongoose');
+const { multipleMongooseToObject } = require('../../util/mongoose');
 
 class SiteController {
     //[GET] /lops

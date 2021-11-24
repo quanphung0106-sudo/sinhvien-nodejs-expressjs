@@ -1,1 +1,24 @@
-Xin chào
+<div class="mt-4" name="find-by-id">
+  <div class="row">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Mã Lớp</th>
+            <th scope="col">Tên lớp</th>
+            <th scope="col">Mã khoa</th>
+          </tr>
+        </thead>
+        <tbody>
+        {{#each lops}}
+          <tr>
+            <th scope="row">{{sum @index 1}}</th>
+            <th>{{this._id}}</th>
+            <td>{{this.tenLop}}</td>
+            <td>{{this.maKhoa}}</td>
+          </tr>
+        </tbody>
+       {{/each}}
+      </table>
+  </div>
+</div>

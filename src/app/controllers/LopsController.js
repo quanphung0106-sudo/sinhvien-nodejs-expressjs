@@ -1,5 +1,5 @@
 const Lop = require('../models/Lop');
-const { mongooseToObject } = require('../../util/mongoose');
+const { mongooseToObject, multipleMongooseToObject } = require('../../util/mongoose');
 
 class LopsController {
 
@@ -55,10 +55,15 @@ class LopsController {
     
     //[GET] /lops/find-id
     findById(req, res, next) {
-        Lop.findById(req.params.id)
-        .then((lop) => { 
-            res.render('find', { lop: mongooseToObject(lop) });
-        })
+        // Lop.findById(req.params.id)
+        // .then((lop) => { 
+        //     res.render('/lops/find', { lop: mongooseToObject(lop) });
+        // })
+        Lop.find({})
+            .then((lops) => {
+                res.render('lops/find', { lops: multipleMongooseToObject(lops)})
+            })
+            .catch(next);
      }
 }
 
