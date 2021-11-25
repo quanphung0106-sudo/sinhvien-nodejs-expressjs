@@ -1,5 +1,5 @@
 <div class="container">
-  <h2 class="mb-5">Quản lý danh sách lớp</h2>
+  <h2 class="mb-5">Quản lý danh sách sinh viên</h2>
   <a class="trash-btn" href="/me/trash/lops"> 
     <i class="ti-trash"></i>
     <p class="trash" >Thùng rác: ({{deletedCount}})</p>
@@ -9,13 +9,21 @@
     Tạo mới
   </a> 
 
-  <table class="table">
+      <div >
+        <input id="myInput" style="width:280px; display: inline-block" class="form-control mt-2" type="text"  onkeyup="myFunction()" placeholder="Tìm kiếm sinh viên theo id (Câu 5) ...">
+      </div>
+
+  <table id="myTable" class="table">
     <thead>
       <tr>
         <th scope="col">#</th>
+        <th scope="col">Mã SV</th>
+        <th scope="col">Họ Tên</th>
+        <th scope="col">Nữ</th>
+        <th scope="col">Ngày Sinh</th>
         <th scope="col">Mã Lớp</th>
-        <th scope="col">Tên lớp</th>
-        <th scope="col">Mã khoa</th>
+        <th scope="col">Học Bổng</th>
+        <th scope="col">Tỉnh</th>
         <th scope="col">Thời gian tạo</th>
         <th scope="col"></th>
       </tr>
@@ -25,8 +33,12 @@
       <tr>
         <th scope="row">{{sum @index 1}}</th>
         <td>{{this._id}}</td>
-        <td>{{this.tenLop}}</td>
-        <td>{{this.maKhoa}}</td>
+        <td>{{this.hoTen}}</td>
+        <td>{{this.nu}}</td>
+        <td>{{this.ngaySinh}}</td>
+        <td>{{this.maLop}}</td>
+        <td>{{this.hocBong}}</td>
+        <td>{{this.Tinh}}</td>
         <td>{{this.createdAt}}</td>
         <td>
           <a href="/lops/{{this._id}}/edit" class="btn btn-warning">Sửa</a>
@@ -35,9 +47,9 @@
       </tr>
         {{else}}
         <tr>
-          <td colspan="5" class="text-center">
-            Bạn chưa đăng bất kỳ lớp nào.
-            <a href="/lops/create">Tạo thêm lớp</a>
+          <td colspan="10" class="text-center">
+            Bạn chưa đăng bất kỳ sinh viên nào.
+            <a href="/lops/create" style="color: blue; text-decoration: underline">Tạo thêm sinh viên</a>
           </td>
         </tr>
       {{/each}}
@@ -56,7 +68,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        Bạn chắc chắn muốn xóa lớp này ?
+        Bạn chắc chắn muốn xóa sinh viên này ?
       </div>
       <div class="modal-footer">
         <button id="delete-lop" type="button" class="btn btn-danger">Xóa bỏ</button>
@@ -92,3 +104,28 @@
 
 });
 </script> 
+
+<script>
+function myFunction() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value;
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+</script>

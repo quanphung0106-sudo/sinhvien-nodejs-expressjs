@@ -1,5 +1,5 @@
 <form method="POST" action="/courses/handle-trash-courses" name="container-form" class="container">
-  <h2 class="mb-5">Danh sách lớp đã xóa</h2>
+  <h2 class="mb-5">Danh sách sinh viên đã xóa</h2>
   <a class="trash-btn"  href="/me/storage/lops"> 
     <i class="ti-back-left"></i>
     <p class="back">Quay lại</p>
@@ -8,9 +8,14 @@
   <table class="table">
     <thead>
       <tr>
+        <th scope="col">#</th>
+        <th scope="col">Mã SV</th>
+        <th scope="col">Họ Tên</th>
+        <th scope="col">Giới tính</th>
+        <th scope="col">Ngày Sinh</th>
         <th scope="col">Mã Lớp</th>
-        <th scope="col">Tên lớp</th>
-        <th scope="col">Mã khoa</th>
+        <th scope="col">Học Bổng</th>
+        <th scope="col">Tỉnh</th>
         <th scope="col">Thời gian xóa</th>
         <th scope="col"></th>
       </tr>
@@ -18,9 +23,14 @@
     <tbody>
         {{#each lops}}
       <tr>
+        <th scope="row">{{sum @index 1}}</th>
         <td>{{this._id}}</td>
-        <td>{{this.tenLop}}</td>
-        <td>{{this.maKhoa}}</td>
+        <td>{{this.hoTen}}</td>
+        <td>{{this.nu}}</td>
+        <td>{{this.ngaySinh}}</td>
+        <td>{{this.maLop}}</td>
+        <td>{{this.hocBong}}</td>
+        <td>{{this.Tinh}}</td>
         <td>
           <a href="" class="btn btn-success btn-restore" data-id="{{this._id}}">Khôi phục</a>
           <a href="/lops/{{this._id}}" class="btn btn-danger" data-id="{{this._id}}" data-bs-toggle="modal" data-bs-target="#delete-lops-modal">Xóa vĩnh viễn</a>
@@ -28,9 +38,9 @@
       </tr>
         {{else}}
         <tr>
-          <td colspan="5" class="text-center">
+          <td colspan="10" class="text-center">
             Thùng rác trống.
-            <a href="/me/storage/lops">Trở về danh sách khóa học.</a>
+            <a href="/me/storage/lops" style="color: blue; text-decoration: underline">Trở về danh sách sinh viên.</a>
           </td>
         </tr>
       {{/each}}
@@ -49,7 +59,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        Bạn chắc chắn muốn xóa VĨNH VIỄN lớp này? Hành động này không thể khôi phục!!
+        Bạn chắc chắn muốn xóa VĨNH VIỄN sinh viên này? Hành động này không thể khôi phục!!
       </div>
       <div class="modal-footer">
         <button id="delete-lop" type="button" class="btn btn-danger">Xóa vĩnh viễn</button>

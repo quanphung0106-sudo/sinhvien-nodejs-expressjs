@@ -1,24 +1,61 @@
-<form class="mt-4" name="find-by-id">
+<div class="mt-4 container" name="find-by-id">
   <div class="row">
-      <table class="table">
+      <div >
+        <input id="myInput" style="width:280px; display: inline-block" class="form-control mt-2" type="text"  onkeyup="myFunction()" placeholder="Tìm kiếm sinh viên theo id (Câu 5) ...">
+      </div>
+      <table id="myTable" class="table">
         <thead>
           <tr>
             <th scope="col">#</th>
+            <th scope="col">Mã SV</th>
+            <th scope="col">Họ Tên</th>
+            <th scope="col">Nữ</th>
+            <th scope="col">Ngày Sinh</th>
             <th scope="col">Mã Lớp</th>
-            <th scope="col">Tên lớp</th>
-            <th scope="col">Mã khoa</th>
+            <th scope="col">Học Bổng</th>
+            <th scope="col">Tỉnh</th>
           </tr>
         </thead>
         <tbody>
         {{#each lops}}
           <tr>
             <th scope="row">{{sum @index 1}}</th>
-            <th>{{this._id}}</th>
-            <td>{{this.tenLop}}</td>
-            <td>{{this.maKhoa}}</td>
+            <td id="th-lops">{{this._id}}</td>
+            <td>{{this.hoTen}}</td>
+            <td>{{this.nu}}</td>
+            <td>{{this.ngaySinh}}</td>
+            <td>{{this.maLop}}</td>
+            <td>{{this.hocBong}}</td>
+            <td>{{this.Tinh}}</td>
           </tr>
         </tbody>
        {{/each}}
       </table>
   </div>
-</form>
+</div>
+
+<script>
+function myFunction() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value;
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+myFunction()
+</script>

@@ -1,4 +1,4 @@
-const Lop = require('../models/Lop');
+const Lop = require('../models/SinhVien');
 const { mongooseToObject, multipleMongooseToObject } = require('../../util/mongoose');
 
 class LopsController {

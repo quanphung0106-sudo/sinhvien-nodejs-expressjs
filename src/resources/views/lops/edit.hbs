@@ -1,14 +1,30 @@
 <div class="container">
-    <h2>Cập nhật danh sách lớp</h2>
+    <h2>Cập nhật danh sách sinh viên</h2>
 
       <form method="POST" action="/lops/{{lops._id}}?_method=PUT" class="mt-5">
         <div class="form-group">
-          <label for="name">Tên lớp</label>
-            <input type="text" class="form-control" id="name" name="tenLop" value="{{lops.tenLop}}"> 
+          <label for="name">Tên SV</label>
+            <input type="text" class="form-control" id="name" name="hoTen" value="{{lops.hoTen}}"> 
         </div>
         <div class="form-group my-3">
-          <label for="name">Mã khoa</label>
-            <input class="form-control" id="name" name="maKhoa" value="{{lops.maKhoa}}"></input>
+          <label for="name">Giới tính</label>
+            <input class="form-control" id="name" name="nu" value="{{lops.nu}}"></input>
+        </div>
+        <div class="form-group my-3">
+          <label for="name">Ngày Sinh</label>
+            <input class="form-control" id="name" name="ngaySinh" value="{{lops.ngaySinh}}"></input>
+        </div>
+        <div class="form-group my-3">
+          <label for="name">Mã Lớp</label>
+            <input class="form-control" id="name" name="maLop" value="{{lops.maLop}}"></input>
+        </div>
+        <div class="form-group my-3">
+          <label for="name">học Bổng</label>
+            <input class="form-control" id="name" name="hocBong" value="{{lops.hocBong}}"></input>
+        </div>
+        <div class="form-group my-3">
+          <label for="name">Tỉnh</label>
+            <input class="form-control" id="name" name="Tinh" value="{{lops.Tinh}}"></input>
         </div>
         <button type="submit" class="btn btn-primary mt-5">Lưu lại</button>
       </form>
